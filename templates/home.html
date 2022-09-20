@@ -1,48 +1,185 @@
 <!DOCTYPE html>
-<html >
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>ML API</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Pacifico"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Arimo"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Hind:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <title>ML API</title>
-  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  <body>
+    <div class="login">
+      <div class="flex m-4 items-center justify-center">
+        <div class="m-2 text-xl font-bold">
+          <h1>Boston House Price Prediction</h1>
+        </div>
+      </div>
+      <!-- Main Input For Receiving Query to our ML -->
+      <div class="flex items-center justify-center">
+        <form
+          action="{{ url_for('predict') }}"
+          method="post"
+          class="w-full max-w-lg"
+        >
+          <div class="px-2">
+            <div class="flex flex-wrap items-center justify-center -mx-2">
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="CRIM"
+                  placeholder="CRIM"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="ZN"
+                  placeholder="ZN"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="INDUS"
+                  placeholder="INDUS"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="CHAS"
+                  placeholder="CHAS"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="NOX"
+                  placeholder="NOX"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="RM"
+                  placeholder="RM"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="Age"
+                  placeholder="Age"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="DIS"
+                  placeholder="DIS"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="RAD"
+                  placeholder="RAD"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="TAX"
+                  placeholder="TAX"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="PTRATIO"
+                  placeholder="PTRATIO"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="B"
+                  placeholder="B"
+                  required="required"
+                />
+              </div>
+              <div class="w-1/2 p-2">
+                <input
+                  type="text"
+                  class="w-full border rounded-xl p-2"
+                  name="LSTAT"
+                  placeholder="LSTAT"
+                  required="required"
+                />
+              </div>
+            </div>
+          </div>
 
-  
-</head>
+          <div class="flex items-center justify-center">
+            <button type="submit">
+              <a
+                class="mt-4 py-4 px-10 lg:px-8 xl:px-10 inline-flex items-center justify-center text-center text-white text-base bg-gray-900 hover:bg-opacity-90 font-normal rounded-full"
+              >
+                Predict
+              </a>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    {% if prediction_text %}
+    <div class="flex items-center justify-center mt-10">
+      <a> {{prediction_text}} </a>
+    </div>
+    {% else %}
 
-<body>
- <div class="login">
-	<h1>Boston House Price Prediction</h1>
-
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('predict')}}"method="post">
-      <input type="text" name="CRIM" placeholder="CRIM" required="required" /><br>
-    	<input type="text" name="ZN" placeholder="ZN" required="required" /><br>
-        <input type="text" name="INDUS" placeholder="INDUS" required="required" /><br>
-        <input type="text" name="CHAS" placeholder="CHAS" required="required" /><br>
-        <input type="text" name="NOX" placeholder="NOX" required="required" /><br>
-        <input type="text" name="RM" placeholder="RM" required="required" /><br>
-        <input type="text" name="Age" placeholder="Age" required="required" /><br>
-        <input type="text" name="DIS" placeholder="DIS" required="required" /><br>
-        <input type="text" name="RAD" placeholder="RAD" required="required" /><br>
-        <input type="text" name="TAX" placeholder="TAX" required="required" /><br>
-        <input type="text" name="PTRATIO" placeholder="PTRATIO" required="required" /><br>
-        <input type="text" name="B" placeholder="B" required="required" /><br>
-        <input type="text" name="LSTAT" placeholder="LSTAT" required="required" /><br>
-
-       
-
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
-
-   <br>
-   <br>
-  
-   
- </div>
- {{prediction_text}}
-
-</body>
+    {% endif %}
+  </body>
 </html>
