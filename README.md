@@ -4,7 +4,7 @@ This is a Web App built using html, css, python, which is deployed on heroku clo
 
 You can access the App from this link
 
-1. [BostonPricePredictor](https://boston-real-estate-pridictor.herokuapp.com/)
+1. [Boston Price Predictor Web App](https://boston-real-estate-pridictor.herokuapp.com/)
 ### Accounts and Tools
 
 1. [Github Account](https://github.com/Firoz1402)
